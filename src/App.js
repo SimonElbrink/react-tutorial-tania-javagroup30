@@ -1,23 +1,11 @@
 import React, {Component} from 'react'
 import Table from "./Table";
+import Form from './Form'
 
 class App extends Component{
 
     state = {
-        characters: [
-            {
-                name: 'Simon',
-                job: 'Teacher Java '
-            },
-            {
-                name: 'Erik',
-                job: 'Teacher Java'
-            },
-            {
-                name: 'Ulf',
-                job: 'Teacher Java C#'
-            },
-        ],
+        characters: [],
 
     }
 
@@ -34,10 +22,20 @@ class App extends Component{
             });
     }
 
+    handleSubmit = character =>{
+
+        this.setState({
+            characters:
+            [...this.state.characters , character]
+        })
+
+    }
+
     render(){
 
         return (
             <div className="container">
+                <Form handleSubmit={this.handleSubmit}/>
                 <Table characterData={this.state.characters} removeCharacter={this.removeCharacter} />
             </div>)
 
